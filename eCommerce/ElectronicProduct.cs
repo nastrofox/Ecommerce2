@@ -10,7 +10,7 @@ namespace eCommerce
     {
         public string _elettronica;
         DateTime giorno = DateTime.Now;
-
+        public double sconto = 0.95;
         public ElectronicProduct(string elettronica)
         {
             this._elettronica = elettronica;
@@ -21,7 +21,7 @@ namespace eCommerce
         }
         public string Elettronica
         {
-            set
+            private set
             {
                 _elettronica = value;
             }
@@ -37,7 +37,7 @@ namespace eCommerce
             {
                 if (giorno.DayOfWeek == DayOfWeek.Monday)
                 {
-                    this.Prezzo = this.Prezzo * 0.95;
+                    this.Prezzo = this.Prezzo * sconto;
                 }
             }
             return id;
