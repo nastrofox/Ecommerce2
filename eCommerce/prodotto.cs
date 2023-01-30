@@ -12,7 +12,7 @@ namespace eCommerce
         private string _nome;
         private string _produttore;
         private string _descrizione;
-        private float _prezzo;
+        private double _prezzo;
 
         public prodotto(string iden, string pro,string name,string des,float price)
         {
@@ -58,7 +58,7 @@ namespace eCommerce
             get { return _descrizione;}
             set { _descrizione = value;}
         }
-        public float Prezzo
+        public double Prezzo
         {
             get { return _prezzo;} 
             set { _prezzo = value;}

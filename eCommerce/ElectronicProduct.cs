@@ -6,36 +6,42 @@ using System.Threading.Tasks;
 
 namespace eCommerce
 {
-    public class ElectronicProduct  : prodotto
+    public class ElectronicProduct : prodotto
     {
-        public string _id,_giorno;
-        public float _sconto;
-        
+        public string _elettronica;
+        DateTime giorno = DateTime.Now;
 
-        public ElectronicProduct(string id,float sconto,string _giorno)
+        public ElectronicProduct(string elettronica)
         {
-            this._id = id;
-            this._sconto = sconto;
+            this._elettronica = elettronica;
         }
-        public ElectronicProduct() : this(" ", 0 , " ")
+        public ElectronicProduct() : this(null)
         {
 
         }
-        public string Id
+        public string Elettronica
         {
             set
             {
-               _id = value;
+                _elettronica = value;
             }
             get
             {
-                return _id;
+                return _elettronica;
             }
         }
-        public void Sconto(string id, float sconto,string giorno)
+        
+        public string Discount(string id, DateTime giorno)
         {
-
+            if (id == "elettronica")
+            {
+                if (giorno.DayOfWeek == DayOfWeek.Monday)
+                {
+                    this.Prezzo = this.Prezzo * 0.95;
+                }
+            }
+            return id;
         }
-
+        
     }
 }
