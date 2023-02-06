@@ -17,7 +17,7 @@ namespace eCommerce
             prodottiPre[0] = product1;
             product2 = new prodotto("sfjf", "logitech", "mouse wireless");
             prodottiPre[1] = product2;
-            product3 = new prodotto("ciao", "porcocane", "carne di maiale");
+            product3 = new prodotto("ciao", "porcoDURO", "carne di maiale");
             prodottiPre[2] = product3;
             prodottoPredefiniti(prodottiPre);
             Prodotti = new prodotto[100];
@@ -46,6 +46,11 @@ namespace eCommerce
                     listViewCarrello.Items.RemoveAt(selezionato);
                 }      
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void SvuotaCarrello_Click(object sender, EventArgs e)
