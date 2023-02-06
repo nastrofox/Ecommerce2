@@ -8,16 +8,30 @@ namespace eCommerce
 {
     internal class alimentari : prodotto
     {
-        public alimentari[] _ingredienti = new alimentari[10];
+        public string[] _ingredienti = new string[10];
         public DateTime _scadenza;
-        public alimentari(DateTime scadenza, alimentari[] ingredienti)
+        public alimentari(string[] ingredienti, DateTime datascadenza, string id, string nome, string prod, float prezzo) : base(id, nome, prod, prezzo)
         {
             _ingredienti = ingredienti;
-            _scadenza = scadenza;
+            _scadenza = datascadenza;
         }
         public alimentari()
         {
 
+        }
+        public string[] Ingredienti
+        {
+            get { return _ingredienti; }
+            private set
+            {
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if (value[i] != null)
+                        _ingredienti[i] = value[i];
+                    else
+                        throw new Exception("Ingredienti non validi");
+                }
+            }
         }
         public DateTime Scadenza
         {
@@ -25,14 +39,18 @@ namespace eCommerce
             get { return _scadenza; }
         }
         public alimentari[] ingredienti { get ; private set; }
-        public string controllo(DateTime scadenza, alimentari[] a )
+        public string Sconto(DateTime scadenza, alimentari[] a )
         {
-            TimeSpan dif = DateTime.Today - scadenza;
-            if (dif.Days < 7)
+            var oggi = DateTime.Today;
+            var giornirimanenti = oggi - Scadenza;
+            if (giornirimanenti.Days < 7)
             {
-                return 
+                return  $"{this.Prezzo * 0.50}";
             }
-            return "iudsagfid";
+            else
+            {
+                return $"{this.Prezzo}";
+            }
         }
     }
     
