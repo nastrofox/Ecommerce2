@@ -8,48 +8,32 @@ namespace eCommerce
 {
     internal class alimentari : prodotto
     {
-        public string[] _ingredienti = new string[10];
-        public DateTime _scadenza;
-        public alimentari(string[] ingredienti, DateTime datascadenza, string id, string nome, string prod, float prezzo) : base(id, nome, prod, prezzo)
-        {
-            _ingredienti = ingredienti;
-            _scadenza = datascadenza;
-        }
-        public alimentari()
-        {
+        public List<string> Ingredienti { get; private set; }
+        public DateTime Scadenza { get; private set; }
 
-        }
-        public string[] Ingredienti
+        public alimentari(List<string> ingredienti, DateTime dataScadenza, string id, string nome, string produttore, float prezzo) : base(id, nome, produttore, prezzo)
         {
-            get { return _ingredienti; }
-            private set
-            {
-                for (int i = 0; i < value.Length; i++)
-                {
-                    if (value[i] != null)
-                        _ingredienti[i] = value[i];
-                    else
-                        throw new Exception("Ingredienti non validi");
-                }
-            }
+            Ingredienti = ingredienti;
+            Scadenza = dataScadenza;
         }
-        public DateTime Scadenza
+
+        public alimentari() : base()
         {
-            private set { _scadenza = value; }
-            get { return _scadenza; }
+            Ingredienti = new List<string>();
         }
-        public alimentari[] ingredienti { get ; private set; }
-        public string Sconto(DateTime scadenza, alimentari[] a )
+
+        public string Sconto(DateTime scadenza)
         {
             var oggi = DateTime.Today;
-            var giornirimanenti = oggi - Scadenza;
-            if (giornirimanenti.Days < 7)
+            var giorniRimanenti = scadenza - oggi;
+
+            if (giorniRimanenti.Days < 7)
             {
-                return  $"{this.Prezzo * 0.50}";
+                return $"{Prezzo * 0.50}";
             }
             else
             {
-                return $"{this.Prezzo}";
+                return $"{Prezzo}";
             }
         }
     }
